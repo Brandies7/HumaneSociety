@@ -1,0 +1,3 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HumaneSociety" Class="HumaneSocietyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Desktop-2RUDMAK;Initial Catalog=HumaneSociety;Integrated Security=True" SettingsObjectName="HumaneSociety.Properties.Settings" SettingsPropertyName="HumaneSocietyConnectionString" Provider="System.Data.SqlClient" />
+</Database>
