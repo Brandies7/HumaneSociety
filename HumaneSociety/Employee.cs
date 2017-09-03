@@ -8,5 +8,14 @@ namespace HumaneSociety
 {
     class Employee
     {
+        public Employee()
+        {
+            
+        }
+
+        public void DisplayEmployeeMenu()
+        {
+            
+        }
     }
 }

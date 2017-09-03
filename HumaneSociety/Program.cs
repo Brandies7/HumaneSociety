@@ -10,7 +10,8 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
-            Address a = new Address();
+            HumaneSocietyUI humaneSociety = new HumaneSocietyUI();
+            humaneSociety.DisplayMenu();
         }
     }
 }

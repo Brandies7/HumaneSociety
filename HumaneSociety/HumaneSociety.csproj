@@ -58,7 +58,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="UI.cs" />
+    <Compile Include="HumaneSocietyUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

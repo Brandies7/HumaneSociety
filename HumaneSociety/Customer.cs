@@ -8,5 +8,14 @@ namespace HumaneSociety
 {
     class Customer
     {
+        public Customer()
+        {
+            
+        }
+
+        public void DisplayCustomerMenu()
+        {
+            
+        }
     }
 }
