@@ -45,12 +45,39 @@ namespace HumaneSociety
 
         public void CreateProfile()
         {
-            
+            Console.WriteLine("Please enter your first name.");
+            string firstName = Console.ReadLine();
+
+            Console.WriteLine("Please enter your last name.");
+            string lastName = Console.ReadLine();
+
+            Console.WriteLine("What is your date of birth?");
+            string birthDate = Console.ReadLine();
+
+            Console.WriteLine("Please enter your SSN. (Optinal)");
+            string socialSecurity = Console.ReadLine();
+
+            Console.WriteLine("What is your address?");
+            string address = Console.ReadLine();
+
+            Console.WriteLine("What city do you live in?");
+            string city = Console.ReadLine();
+
+            Console.WriteLine("Please enter the state you live in.");
+            string state = Console.ReadLine();
+
+            Console.WriteLine("What is your zip code?");
+            string zipCode = Console.ReadLine();
+
+            Console.WriteLine("Please enter your phone number.");
+            string phoneNumber = Console.ReadLine();
+
         }
 
         public void SearchForPet()
         {
-            
+            Console.WriteLine("How would you like to search for your new pet. Please choose from one of the search options below." + Environment.NewLine +
+                              "");
         }
     }
 }
