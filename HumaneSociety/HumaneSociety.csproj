@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers.cs" />
-    <Compile Include="Employee.cs" />
+    <Compile Include="CustomerMenu.cs" />
+    <Compile Include="EmployeeMenu.cs" />
     <Compile Include="HumaneSociety.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

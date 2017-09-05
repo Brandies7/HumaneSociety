@@ -8,13 +8,13 @@ namespace HumaneSociety
 {
     class HumaneSocietyUI
     {
-        public Customers customer;
-        public Employee employee;
+        public CustomerMenu customer;
+        public EmployeeMenu employee;
 
         public HumaneSocietyUI()
         {
-            employee = new Employee();
-            customer = new Customers();
+            employee = new EmployeeMenu();
+            customer = new CustomerMenu();
         }
 
         public void DisplayMenu()
@@ -59,8 +59,7 @@ namespace HumaneSociety
                     employee.DisplayEmployeeMenu();
                     break;
                 default:
-                    Console.WriteLine(
-                        "Sorry, but we do not have any employee's with that ID number. Please try again.");
+                    Console.WriteLine("Sorry, but we do not have any employee's with that ID number. Please try again.");
                     GetEmployeeID();
                     break;
             }
