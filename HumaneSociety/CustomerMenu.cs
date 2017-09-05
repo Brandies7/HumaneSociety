@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -119,13 +120,16 @@ namespace HumaneSociety
             Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
                               "Choose '1' to Display Results." + Environment.NewLine +
                               "Choose '2' to Refine Search");
-            string animalAge = Console.ReadLine();
+            int animalAge = Convert.ToInt32(Console.ReadLine());
             switch (animalAge)
             {
-                case "1":
-                    //display results
+                case 1:
+                    var results =
+                    (from a in context.Animals
+                        where a.Age == animalAge
+                        select a).ToList();
                     break;
-                case "2":
+                case 2:
                     SearchForPet();
                     break;
                 default:
@@ -143,7 +147,10 @@ namespace HumaneSociety
             switch (animalSex)
             {
                 case "1":
-                    //display results
+                    var results =
+                    (from a in context.Animals
+                        where a.Sex == animalSex
+                        select a).ToList();
                     break;
                 case "2":
                     SearchForPet();
@@ -163,7 +170,10 @@ namespace HumaneSociety
             switch (animalSpecies)
             {
                 case "1":
-                    //display results
+                    var results =
+                    (from a in context.Animals
+                        where a.Species == animalSpecies
+                        select a).ToList();
                     break;
                 case "2":
                     SearchForPet();
@@ -183,7 +193,10 @@ namespace HumaneSociety
             switch (animalBreed)
             {
                 case "1":
-                    //display results
+                    var results =
+                    (from a in context.Animals
+                        where a.Breed == animalBreed
+                        select a).ToList();
                     break;
                 case "2":
                     SearchForPet();
@@ -199,16 +212,18 @@ namespace HumaneSociety
             Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
                               "Choose '1' to Display Results." + Environment.NewLine +
                               "Choose '2' to Refine Search");
-            string animalPrice = Console.ReadLine();
+            int animalPrice = Convert.ToInt32(Console.ReadLine());
             switch (animalPrice)
             {
-                case "1":
+                case 1:
                     var results =
-                        
+                    (from a in context.Animals
+                        where a.SalePrice == animalPrice
+                        select a).ToList(); 
                         
                         
                     break;
-                case "2":
+                case 2:
                     SearchForPet();
                     break;
                 default:
