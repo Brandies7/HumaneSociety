@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace HumaneSociety
 {
     class CustomerMenu
     {
+        HumaneSocietyDataContext context = new HumaneSocietyDataContext();
         public CustomerMenu()
         {
             
@@ -81,7 +83,8 @@ namespace HumaneSociety
                               "Choose '2' for Sex" + Environment.NewLine +
                               "Choose '3' for Species" + Environment.NewLine +
                               "Choose '4' for Breed" + Environment.NewLine +
-                              "Choose '5' for Price");
+                              "Choose '5' for Price" + Environment.NewLine +
+                              "Choose '6' for All Pet Information");
             string searchChoice = Console.ReadLine();
             switch (searchChoice)
             {
@@ -100,6 +103,10 @@ namespace HumaneSociety
                 case "5":
                     AnimalPrice();
                     break;
+                case "6":
+                    AnimalInfo();
+                    break;
+
                 default:
                     Console.WriteLine("Sorry, that was an invalid entry. Please try again.");
                     SearchForPet();
@@ -196,7 +203,10 @@ namespace HumaneSociety
             switch (animalPrice)
             {
                 case "1":
-                    //display results
+                    var results =
+                        
+                        
+                        
                     break;
                 case "2":
                     SearchForPet();
@@ -205,6 +215,15 @@ namespace HumaneSociety
                     Console.WriteLine("Not a valid entry. Please try again");
                     break;
             }
+        }
+
+        public void AnimalInfo()
+        {
+            var results =
+                from a in context.Animals
+                select a;
+            Console.WriteLine(results);
+            Console.ReadLine();
         }
     }
 }
