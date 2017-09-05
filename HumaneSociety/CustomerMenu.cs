@@ -77,7 +77,134 @@ namespace HumaneSociety
         public void SearchForPet()
         {
             Console.WriteLine("How would you like to search for your new pet. Please choose from one of the search options below." + Environment.NewLine +
-                              "");
+                              "Choose '1' for Age" + Environment.NewLine +
+                              "Choose '2' for Sex" + Environment.NewLine +
+                              "Choose '3' for Species" + Environment.NewLine +
+                              "Choose '4' for Breed" + Environment.NewLine +
+                              "Choose '5' for Price");
+            string searchChoice = Console.ReadLine();
+            switch (searchChoice)
+            {
+                case "1":
+                    AnimalAge();
+                    break;
+                case "2":
+                    AnimalSex();
+                    break;
+                case "3":
+                    AnimalSpecies();
+                    break;
+                case "4":
+                    AnimalBreed();
+                    break;
+                case "5":
+                    AnimalPrice();
+                    break;
+                default:
+                    Console.WriteLine("Sorry, that was an invalid entry. Please try again.");
+                    SearchForPet();
+                    break;
+            }
+        }
+
+        public void AnimalAge()
+        {
+            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
+                              "Choose '1' to Display Results." + Environment.NewLine +
+                              "Choose '2' to Refine Search");
+            string animalAge = Console.ReadLine();
+            switch (animalAge)
+            {
+                case "1":
+                    //display results
+                    break;
+                case "2":
+                    SearchForPet();
+                    break;
+                default:
+                    Console.WriteLine("Not a valid entry. Please try again");
+                    break;
+            }
+        }
+
+        public void AnimalSex()
+        {
+            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
+                              "Choose '1' to Display Results." + Environment.NewLine +
+                              "Choose '2' to Refine Search");
+            string animalSex = Console.ReadLine();
+            switch (animalSex)
+            {
+                case "1":
+                    //display results
+                    break;
+                case "2":
+                    SearchForPet();
+                    break;
+                default:
+                    Console.WriteLine("Not a valid entry. Please try again");
+                    break;
+            }
+        }
+
+        public void AnimalSpecies()
+        {
+            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
+                              "Choose '1' to Display Results." + Environment.NewLine +
+                              "Choose '2' to Refine Search");
+            string animalSpecies = Console.ReadLine();
+            switch (animalSpecies)
+            {
+                case "1":
+                    //display results
+                    break;
+                case "2":
+                    SearchForPet();
+                    break;
+                default:
+                    Console.WriteLine("Not a valid entry. Please try again");
+                    break;
+            }
+        }
+
+        public void AnimalBreed()
+        {
+            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
+                              "Choose '1' to Display Results." + Environment.NewLine +
+                              "Choose '2' to Refine Search");
+            string animalBreed = Console.ReadLine();
+            switch (animalBreed)
+            {
+                case "1":
+                    //display results
+                    break;
+                case "2":
+                    SearchForPet();
+                    break;
+                default:
+                    Console.WriteLine("Not a valid entry. Please try again");
+                    break;
+            }
+        }
+
+        public void AnimalPrice()
+        {
+            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
+                              "Choose '1' to Display Results." + Environment.NewLine +
+                              "Choose '2' to Refine Search");
+            string animalPrice = Console.ReadLine();
+            switch (animalPrice)
+            {
+                case "1":
+                    //display results
+                    break;
+                case "2":
+                    SearchForPet();
+                    break;
+                default:
+                    Console.WriteLine("Not a valid entry. Please try again");
+                    break;
+            }
         }
     }
 }
