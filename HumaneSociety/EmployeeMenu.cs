@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    class Customer
+    class Employee
     {
-        public Customer()
+        public Employee()
         {
             
         }
 
-        public void DisplayCustomerMenu()
+        public void DisplayEmployeeMenu()
         {
-            
+            Console.WriteLine("Welcome back to work, what would you like to do today? ");
         }
     }
 }

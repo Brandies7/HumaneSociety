@@ -8,13 +8,13 @@ namespace HumaneSociety
 {
     class HumaneSocietyUI
     {
-        public Customer customer;
+        public Customers customer;
         public Employee employee;
 
         public HumaneSocietyUI()
         {
             employee = new Employee();
-            customer = new Customer();
+            customer = new Customers();
         }
 
         public void DisplayMenu()
@@ -25,7 +25,7 @@ namespace HumaneSociety
             switch (menuOption)
             {
                 case "1":
-                    customer.DisplayCustomerMenu();
+                    customer.GetCustomerName();
                     break;
                 case "2":
                     GetEmployeeID();
