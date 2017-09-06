@@ -151,7 +151,7 @@
       <Column Name="SpayedorNeutered" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="SalePrice" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Food_Intake" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Room_Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Room_Number" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Animal_Animal_Intake" Member="Animal_Intakes" ThisKey="ID" OtherKey="Animals_ID" Type="Animal_Intake" />
       <Association Name="Animal_Animal_Intake1" Member="Animal_Intakes1" ThisKey="ID" OtherKey="Animals_ID" Type="Animal_Intake" />
       <Association Name="Animal_Adoption_Status" Member="Adoption_Status" ThisKey="ID" OtherKey="Animal_ID" Type="Adoption_Status" />

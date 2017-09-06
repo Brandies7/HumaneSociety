@@ -90,6 +90,7 @@ namespace HumaneSociety
             context.Persons.InsertOnSubmit(person);
             context.Addresses.InsertOnSubmit(address);
             context.Phone_Numbers.InsertOnSubmit(phoneNumber);
+            context.SubmitChanges();
         }
 
         public void SearchForPet()

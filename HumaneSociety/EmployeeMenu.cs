@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,9 +76,10 @@ namespace HumaneSociety
             animal.Food_Intake = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("What room number will this animal be assigned?");
-            animal.Room_Number = Convert.ToInt32(Console.ReadLine());
+            animal.Room_Number = Console.ReadLine();
 
             context.Animals.InsertOnSubmit(animal);
+            context.SubmitChanges();
             AddAnotherAnimal();
         }
 
@@ -110,11 +112,36 @@ namespace HumaneSociety
         public void UpdateRoomNumber()  
         {
             
+            Console.WriteLine("What is the name of the animal that you would like to update room number for?");
+            animal.Name = Console.ReadLine();
+
+            Console.WriteLine("What would you like the new room number to be for " + animal.Name + "?");
+            animal.Room_Number = Console.ReadLine();
+
+            var results =
+            (from a in context.Animals
+                where a.Room_Number.Contains(animal.Room_Number)
+                select a).First();
+            results.Room_Number = animal.Room_Number;
+            context.SubmitChanges();
         }
 
         public void AdoptionStatus()
         {
-            
+            Adoption_Status adoptionStatus = new Adoption_Status();
+
+            Console.WriteLine("What is the name of the animal that you would like to change adoption status for?");
+            animal.Name = (Console.ReadLine());
+
+            Console.WriteLine("What is the updated adoption status of " + animal.Name + "?");
+            adoptionStatus.Adopted = Console.ReadLine();
+
+            var results =
+            (from a in context.Adoption_Status
+                where a.Adopted.Contains(adoptionStatus.Adopted)
+                select a).First();
+            results.Adopted = adoptionStatus.Adopted;
+            context.SubmitChanges();
         }
 
         public void VaccinationRecords()
