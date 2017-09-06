@@ -73,7 +73,7 @@ namespace HumaneSociety
             animal.SalePrice = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("How many pounds of food does this animal eat per day?");
-            animal.Food_Intake = Convert.ToInt32(Console.ReadLine());
+            animal.Food_Intake = Console.ReadLine();
 
             Console.WriteLine("What room number will this animal be assigned?");
             animal.Room_Number = Console.ReadLine();
@@ -122,6 +122,7 @@ namespace HumaneSociety
             (from a in context.Animals
                 where a.Room_Number.Contains(animal.Room_Number)
                 select a).First();
+
             results.Room_Number = animal.Room_Number;
             context.SubmitChanges();
         }
@@ -131,7 +132,7 @@ namespace HumaneSociety
             Adoption_Status adoptionStatus = new Adoption_Status();
 
             Console.WriteLine("What is the name of the animal that you would like to change adoption status for?");
-            animal.Name = (Console.ReadLine());
+            animal.Name = Console.ReadLine();
 
             Console.WriteLine("What is the updated adoption status of " + animal.Name + "?");
             adoptionStatus.Adopted = Console.ReadLine();
@@ -140,18 +141,43 @@ namespace HumaneSociety
             (from a in context.Adoption_Status
                 where a.Adopted.Contains(adoptionStatus.Adopted)
                 select a).First();
+
             results.Adopted = adoptionStatus.Adopted;
             context.SubmitChanges();
         }
 
         public void VaccinationRecords()
         {
-            
+            Console.WriteLine("What is the name of the animal you would like to update vaccination record for?");
+            animal.Name = Console.ReadLine();
+
+            Console.WriteLine("What is the updated vaccination status for " + animal.Name + "?");
+            animal.Vaccinated = Console.ReadLine();
+
+            var results =
+            (from a in context.Animals
+                where a.Vaccinated.Contains(animal.Vaccinated)
+                select a).First();
+
+            results.Vaccinated = animal.Vaccinated;
+            context.SubmitChanges();
         }
 
         public void FoodIntake()
         {
-            
+            Console.WriteLine("What is the name of the animal that you would like to update food intake for?");
+            animal.Name = Console.ReadLine();
+
+            Console.WriteLine("What is the new food intake for " + animal.Name + " (in pounds)?");
+            animal.Food_Intake = (Console.ReadLine());
+
+            var results =
+            (from a in context.Animals
+                where a.Food_Intake.Contains(animal.Food_Intake)
+                select a).First();
+
+            results.Food_Intake = animal.Food_Intake;
+            context.SubmitChanges();
         }
     }
 }

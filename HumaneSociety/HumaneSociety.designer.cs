@@ -3447,7 +3447,7 @@ namespace HumaneSociety
 		
 		private System.Nullable<int> _SalePrice;
 		
-		private System.Nullable<int> _Food_Intake;
+		private string _Food_Intake;
 		
 		private string _Room_Number;
 		
@@ -3485,7 +3485,7 @@ namespace HumaneSociety
     partial void OnSpayedorNeuteredChanged();
     partial void OnSalePriceChanging(System.Nullable<int> value);
     partial void OnSalePriceChanged();
-    partial void OnFood_IntakeChanging(System.Nullable<int> value);
+    partial void OnFood_IntakeChanging(string value);
     partial void OnFood_IntakeChanged();
     partial void OnRoom_NumberChanging(string value);
     partial void OnRoom_NumberChanged();
@@ -3682,8 +3682,8 @@ namespace HumaneSociety
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Food_Intake", DbType="Int")]
-		public System.Nullable<int> Food_Intake
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Food_Intake", DbType="VarChar(50)")]
+		public string Food_Intake
 		{
 			get
 			{
