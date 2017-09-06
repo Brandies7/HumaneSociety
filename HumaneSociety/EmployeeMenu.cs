@@ -113,7 +113,6 @@ namespace HumaneSociety
                     Console.WriteLine("Sorry, but you must choose one of the options given");
                     AddAnotherAnimal();
                     break;
-
             }
         }
 

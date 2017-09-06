@@ -55,8 +55,6 @@ namespace HumaneSociety
                     DisplayCustomerMenu(customerName);
                     break;
             }
-
-
         }
 
         public void CreateProfile()
