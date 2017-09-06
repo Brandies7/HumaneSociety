@@ -3449,7 +3449,7 @@ namespace HumaneSociety
 		
 		private System.Nullable<int> _Food_Intake;
 		
-		private System.Nullable<int> _Room_Number;
+		private string _Room_Number;
 		
 		private EntitySet<Animal_Intake> _Animal_Intakes;
 		
@@ -3487,7 +3487,7 @@ namespace HumaneSociety
     partial void OnSalePriceChanged();
     partial void OnFood_IntakeChanging(System.Nullable<int> value);
     partial void OnFood_IntakeChanged();
-    partial void OnRoom_NumberChanging(System.Nullable<int> value);
+    partial void OnRoom_NumberChanging(string value);
     partial void OnRoom_NumberChanged();
     #endregion
 		
@@ -3702,8 +3702,8 @@ namespace HumaneSociety
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Room_Number", DbType="Int")]
-		public System.Nullable<int> Room_Number
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Room_Number", DbType="VarChar(50)")]
+		public string Room_Number
 		{
 			get
 			{
