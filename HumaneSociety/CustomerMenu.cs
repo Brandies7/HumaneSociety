@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -11,9 +12,10 @@ namespace HumaneSociety
     class CustomerMenu
     {
         HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+
         public CustomerMenu()
         {
-            
+
         }
 
         public void GetCustomerName()
@@ -40,7 +42,7 @@ namespace HumaneSociety
                 default:
                     Console.WriteLine("Sorry, that entry was not recognized. Please try again.");
                     DisplayCustomerMenu(customerName);
-                    break;      
+                    break;
             }
 
 
@@ -48,44 +50,58 @@ namespace HumaneSociety
 
         public void CreateProfile()
         {
+            Phone_Number phoneNumber = new Phone_Number();
+            Address address = new Address();
+            Person person = new Person();
+
             Console.WriteLine("Please enter your first name.");
-            string firstName = Console.ReadLine();
+            person.First_Name = Console.ReadLine();
 
             Console.WriteLine("Please enter your last name.");
-            string lastName = Console.ReadLine();
+            person.Last_Name = Console.ReadLine();
 
             Console.WriteLine("What is your date of birth?");
-            string birthDate = Console.ReadLine();
+            person.Date_Of_Birth = Console.ReadLine();
 
             Console.WriteLine("Please enter your SSN. (Optinal)");
-            string socialSecurity = Console.ReadLine();
+            person.SSN = Console.ReadLine();
 
             Console.WriteLine("What is your address?");
-            string address = Console.ReadLine();
+            address.Address1 = Console.ReadLine();
 
             Console.WriteLine("What city do you live in?");
-            string city = Console.ReadLine();
+            address.City = Console.ReadLine();
 
             Console.WriteLine("Please enter the state you live in.");
-            string state = Console.ReadLine();
+            address.State = Console.ReadLine();
 
             Console.WriteLine("What is your zip code?");
-            string zipCode = Console.ReadLine();
+            address.Zip = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Please enter your phone number.");
-            string phoneNumber = Console.ReadLine();
+            phoneNumber.PhoneNumber = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine("Please enter your email address.");
+            person.EMail = Console.ReadLine();
+
+            Console.WriteLine("What is your password?");
+            person.Password = Console.ReadLine();
+
+            context.Persons.InsertOnSubmit(person);
+            context.Addresses.InsertOnSubmit(address);
+            context.Phone_Numbers.InsertOnSubmit(phoneNumber);
         }
 
         public void SearchForPet()
         {
-            Console.WriteLine("How would you like to search for your new pet. Please choose from one of the search options below." + Environment.NewLine +
-                              "Choose '1' for Age" + Environment.NewLine +
-                              "Choose '2' for Sex" + Environment.NewLine +
-                              "Choose '3' for Species" + Environment.NewLine +
-                              "Choose '4' for Breed" + Environment.NewLine +
-                              "Choose '5' for Price" + Environment.NewLine +
-                              "Choose '6' for All Pet Information");
+            Console.WriteLine(
+                "How would you like to search for your new pet. Please choose from one of the search options below." + Environment.NewLine +
+                "Choose '1' for Age" + Environment.NewLine +
+                "Choose '2' for Sex" + Environment.NewLine +
+                "Choose '3' for Species" + Environment.NewLine +
+                "Choose '4' for Breed" + Environment.NewLine +
+                "Choose '5' for Price" + Environment.NewLine +
+                "Choose '6' for All Pet Information");
             string searchChoice = Console.ReadLine();
             switch (searchChoice)
             {
@@ -117,32 +133,24 @@ namespace HumaneSociety
 
         public void AnimalAge()
         {
-            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
-                              "Choose '1' to Display Results." + Environment.NewLine +
-                              "Choose '2' to Refine Search");
+            Console.WriteLine("What age of pet are you looking for?");
             int animalAge = Convert.ToInt32(Console.ReadLine());
-            switch (animalAge)
+            var results =
+            (from a in context.Animals
+                where a.Age == animalAge
+                select a).ToList();
+            foreach (var row in results)
             {
-                case 1:
-                    var results =
-                    (from a in context.Animals
-                        where a.Age == animalAge
-                        select a).ToList();
-                    break;
-                case 2:
-                    SearchForPet();
-                    break;
-                default:
-                    Console.WriteLine("Not a valid entry. Please try again");
-                    break;
+                Console.WriteLine("These are the ages of the animals currently in our system" + row.Age);
+                Console.ReadLine();
             }
         }
 
         public void AnimalSex()
         {
-            Console.WriteLine("Would you like to display the results or refine your search?" + Environment.NewLine +
-                              "Choose '1' to Display Results." + Environment.NewLine +
-                              "Choose '2' to Refine Search");
+            Console.WriteLine("Are you looking for male or female?" + Environment.NewLine +
+                              "Choose '1' For Male" + Environment.NewLine +
+                              "Choose '2' For Female");
             string animalSex = Console.ReadLine();
             switch (animalSex)
             {
@@ -151,6 +159,11 @@ namespace HumaneSociety
                     (from a in context.Animals
                         where a.Sex == animalSex
                         select a).ToList();
+                    foreach (var row in results)
+                    {
+                        Console.WriteLine("These are the animals that match your search" + row.Species);
+                        Console.ReadLine();
+                    }
                     break;
                 case "2":
                     SearchForPet();
@@ -174,6 +187,12 @@ namespace HumaneSociety
                     (from a in context.Animals
                         where a.Species == animalSpecies
                         select a).ToList();
+                    foreach (var row in results)
+                    {
+                        Console.WriteLine("These are the different type of species currently in our system" +
+                                          row.Species);
+                        Console.ReadLine();
+                    }
                     break;
                 case "2":
                     SearchForPet();
@@ -197,6 +216,11 @@ namespace HumaneSociety
                     (from a in context.Animals
                         where a.Breed == animalBreed
                         select a).ToList();
+                    foreach (var row in results)
+                    {
+                        Console.WriteLine("These are the breeds of animals currently in our system" + row.Breed);
+                        Console.ReadLine();
+                    }
                     break;
                 case "2":
                     SearchForPet();
@@ -219,9 +243,14 @@ namespace HumaneSociety
                     var results =
                     (from a in context.Animals
                         where a.SalePrice == animalPrice
-                        select a).ToList(); 
-                        
-                        
+                        select a).ToList();
+                    foreach (var row in results)
+                    {
+                        Console.WriteLine("These are the prices of the animals currently in our system" +
+                                          row.SalePrice);
+                        Console.ReadLine();
+                    }
+
                     break;
                 case 2:
                     SearchForPet();
@@ -242,3 +271,6 @@ namespace HumaneSociety
         }
     }
 }
+
+        
+  
