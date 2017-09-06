@@ -28,11 +28,11 @@
       <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="StaffID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Staff_Adoption_Info" Member="Staff" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
+      <Association Name="Staff_Adoption_Info1" Member="Staff1" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
       <Association Name="Customer_Adoption_Info" Member="Customer" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
       <Association Name="Customer_Adoption_Info1" Member="Customer1" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
       <Association Name="Customer_Adoption_Info2" Member="Customer2" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
-      <Association Name="Staff_Adoption_Info" Member="Staff" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
-      <Association Name="Staff_Adoption_Info1" Member="Staff1" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Adoption_Status" Member="Adoption_Status">
@@ -44,20 +44,6 @@
       <Association Name="Animal_Adoption_Status1" Member="Animal1" ThisKey="Animal_ID" OtherKey="ID" Type="Animal" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Customer" Member="Customers">
-    <Type Name="Customer">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Customer_Adoption_Info" Member="Adoption_Infos" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
-      <Association Name="Customer_Adoption_Info1" Member="Adoption_Infos1" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
-      <Association Name="Customer_Adoption_Info2" Member="Adoption_Infos2" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
-      <Association Name="Customer_Intake" Member="Intakes" ThisKey="ID" OtherKey="CustomerID" Type="Intake" />
-      <Association Name="Customer_Intake1" Member="Intakes1" ThisKey="ID" OtherKey="CustomerID" Type="Intake" />
-      <Association Name="Customer_Take_Payment" Member="Take_Payments" ThisKey="ID" OtherKey="Customer_ID" Type="Take_Payment" />
-      <Association Name="Person_Customer" Member="Person" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
-      <Association Name="Person_Customer1" Member="Person1" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Intake" Member="Intakes">
     <Type Name="Intake">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -66,10 +52,10 @@
       <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Intake_Animal_Intake" Member="Animal_Intakes" ThisKey="ID" OtherKey="Intake_ID" Type="Animal_Intake" />
       <Association Name="Intake_Animal_Intake1" Member="Animal_Intakes1" ThisKey="ID" OtherKey="Intake_ID" Type="Animal_Intake" />
-      <Association Name="Customer_Intake" Member="Customer" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
-      <Association Name="Customer_Intake1" Member="Customer1" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
       <Association Name="Staff_Intake" Member="Staff" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
       <Association Name="Staff_Intake1" Member="Staff1" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
+      <Association Name="Customer_Intake" Member="Customer" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_Intake1" Member="Customer1" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Medical_Procedure" Member="Medical_Procedures">
@@ -82,10 +68,10 @@
       <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Medical_Procedure_Medical_Staff" Member="Medical_Staffs" ThisKey="ID" OtherKey="ProcedureID" Type="Medical_Staff" />
       <Association Name="Medical_Procedure_Medical_Staff1" Member="Medical_Staffs1" ThisKey="ID" OtherKey="ProcedureID" Type="Medical_Staff" />
-      <Association Name="Staff_Medical_Procedure" Member="Staff" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
-      <Association Name="Staff_Medical_Procedure1" Member="Staff1" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
       <Association Name="Animal_Medical_Procedure" Member="Animal" ThisKey="AnimalID" OtherKey="ID" Type="Animal" IsForeignKey="true" />
       <Association Name="Animal_Medical_Procedure1" Member="Animal1" ThisKey="AnimalID" OtherKey="ID" Type="Animal" IsForeignKey="true" />
+      <Association Name="Staff_Medical_Procedure" Member="Staff" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
+      <Association Name="Staff_Medical_Procedure1" Member="Staff1" ThisKey="StaffID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Medical_Staff" Member="Medical_Staffs">
@@ -106,22 +92,6 @@
       <Association Name="Phone_Number_Person" Member="Persons" ThisKey="ID" OtherKey="Phone_ID" Type="Person" />
     </Type>
   </Table>
-  <Table Name="dbo.Staff" Member="Staffs">
-    <Type Name="Staff">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Staff_Adoption_Info" Member="Adoption_Infos" ThisKey="ID" OtherKey="StaffID" Type="Adoption_Info" />
-      <Association Name="Staff_Adoption_Info1" Member="Adoption_Infos1" ThisKey="ID" OtherKey="StaffID" Type="Adoption_Info" />
-      <Association Name="Staff_Intake" Member="Intakes" ThisKey="ID" OtherKey="StaffID" Type="Intake" />
-      <Association Name="Staff_Intake1" Member="Intakes1" ThisKey="ID" OtherKey="StaffID" Type="Intake" />
-      <Association Name="Staff_Medical_Procedure" Member="Medical_Procedures" ThisKey="ID" OtherKey="StaffID" Type="Medical_Procedure" />
-      <Association Name="Staff_Medical_Procedure1" Member="Medical_Procedures1" ThisKey="ID" OtherKey="StaffID" Type="Medical_Procedure" />
-      <Association Name="Staff_Medical_Staff" Member="Medical_Staffs" ThisKey="ID" OtherKey="StaffID" Type="Medical_Staff" />
-      <Association Name="Staff_Medical_Staff1" Member="Medical_Staffs1" ThisKey="ID" OtherKey="StaffID" Type="Medical_Staff" />
-      <Association Name="Staff_Make_Payment" Member="Make_Payments" ThisKey="ID" OtherKey="Staff_ID" Type="Make_Payment" />
-      <Association Name="Person_Staff" Member="Person" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Person" Member="Persons">
     <Type Name="Person">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -133,9 +103,9 @@
       <Column Name="Last_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="EMail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Person_Staff" Member="Staffs" ThisKey="ID" OtherKey="PersonID" Type="Staff" />
       <Association Name="Person_Customer" Member="Customers" ThisKey="ID" OtherKey="PersonID" Type="Customer" />
       <Association Name="Person_Customer1" Member="Customers1" ThisKey="ID" OtherKey="PersonID" Type="Customer" />
-      <Association Name="Person_Staff" Member="Staffs" ThisKey="ID" OtherKey="PersonID" Type="Staff" />
       <Association Name="Address_Person" Member="Address" ThisKey="Address_ID" OtherKey="ID" Type="Address" IsForeignKey="true" />
       <Association Name="Address_Person1" Member="Address1" ThisKey="Address_ID" OtherKey="ID" Type="Address" IsForeignKey="true" />
       <Association Name="Phone_Number_Person" Member="Phone_Number" ThisKey="Phone_ID" OtherKey="ID" Type="Phone_Number" IsForeignKey="true" />
@@ -162,20 +132,34 @@
       <Association Name="Animal_Medical_Procedure1" Member="Medical_Procedures1" ThisKey="ID" OtherKey="AnimalID" Type="Medical_Procedure" />
     </Type>
   </Table>
-  <Table Name="dbo.Make_Payment" Member="Make_Payments">
-    <Type Name="Make_Payment">
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Payment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Staff_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Staff_Make_Payment" Member="Staff" ThisKey="Staff_ID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
+      <Column Name="PersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Take_Payment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Staff_Adoption_Info" Member="Adoption_Infos" ThisKey="ID" OtherKey="StaffID" Type="Adoption_Info" />
+      <Association Name="Staff_Adoption_Info1" Member="Adoption_Infos1" ThisKey="ID" OtherKey="StaffID" Type="Adoption_Info" />
+      <Association Name="Staff_Intake" Member="Intakes" ThisKey="ID" OtherKey="StaffID" Type="Intake" />
+      <Association Name="Staff_Intake1" Member="Intakes1" ThisKey="ID" OtherKey="StaffID" Type="Intake" />
+      <Association Name="Staff_Medical_Procedure" Member="Medical_Procedures" ThisKey="ID" OtherKey="StaffID" Type="Medical_Procedure" />
+      <Association Name="Staff_Medical_Procedure1" Member="Medical_Procedures1" ThisKey="ID" OtherKey="StaffID" Type="Medical_Procedure" />
+      <Association Name="Staff_Medical_Staff" Member="Medical_Staffs" ThisKey="ID" OtherKey="StaffID" Type="Medical_Staff" />
+      <Association Name="Staff_Medical_Staff1" Member="Medical_Staffs1" ThisKey="ID" OtherKey="StaffID" Type="Medical_Staff" />
+      <Association Name="Person_Staff" Member="Person" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Take_Payment" Member="Take_Payments">
-    <Type Name="Take_Payment">
-      <Column Name="ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Paid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Customer_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Customer_Take_Payment" Member="Customer" ThisKey="Customer_ID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Make_Payment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Adoption_Info" Member="Adoption_Infos" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
+      <Association Name="Customer_Adoption_Info1" Member="Adoption_Infos1" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
+      <Association Name="Customer_Adoption_Info2" Member="Adoption_Infos2" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
+      <Association Name="Customer_Intake" Member="Intakes" ThisKey="ID" OtherKey="CustomerID" Type="Intake" />
+      <Association Name="Customer_Intake1" Member="Intakes1" ThisKey="ID" OtherKey="CustomerID" Type="Intake" />
+      <Association Name="Person_Customer" Member="Person" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
+      <Association Name="Person_Customer1" Member="Person1" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -12,10 +12,17 @@ namespace HumaneSociety
     class CustomerMenu
     {
         HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+        public Customer customer;
+        public Phone_Number phoneNumber;
+        public Address address;
+        public Person person;
 
         public CustomerMenu()
         {
-
+            customer = new Customer();
+            phoneNumber = new Phone_Number();
+            address = new Address();
+            person = new Person();
         }
 
         public void GetCustomerName()
@@ -54,10 +61,6 @@ namespace HumaneSociety
 
         public void CreateProfile()
         {
-            Phone_Number phoneNumber = new Phone_Number();
-            Address address = new Address();
-            Person person = new Person();
-
             Console.WriteLine("Please enter your first name.");
             person.First_Name = Console.ReadLine();
 
@@ -277,11 +280,10 @@ namespace HumaneSociety
 
         public void MakePayment()
         {
-            Make_Payment makePayment = new Make_Payment();
             Console.WriteLine("How much money would you like to pay");
-            makePayment.Payment = Console.ReadLine();
+            customer.Make_Payment = Console.ReadLine();
 
-            context.Make_Payments.InsertOnSubmit(makePayment);
+            context.Customers.InsertOnSubmit(customer);
             context.SubmitChanges();
         }
     }

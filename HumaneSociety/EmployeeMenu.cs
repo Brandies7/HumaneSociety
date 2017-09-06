@@ -9,11 +9,15 @@ namespace HumaneSociety
 {
     class EmployeeMenu
     {
-        Animal animal = new Animal();
+
         HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+        public Animal animal;
+        public Staff staff;
+
         public EmployeeMenu()
         {
-            
+            animal = new Animal();
+            staff = new Staff();
         }
 
         public void DisplayEmployeeMenu()
@@ -23,7 +27,8 @@ namespace HumaneSociety
                               "Choose '2' to Update Room Number." + Environment.NewLine +
                               "Choose '3' to Update Adoption Status." + Environment.NewLine +
                               "Choose '4' to Update Vaccination Records." + Environment.NewLine +
-                              "Choose '5' to Update Animals Fodd Intake.");
+                              "Choose '5' to Update Animals Fodd Intake." + Environment.NewLine +
+                              "Choose '6' to Take Payment.");
             string choice = Console.ReadLine();
             switch (choice)
             {
@@ -41,6 +46,9 @@ namespace HumaneSociety
                     break;
                 case "5":
                     FoodIntake();
+                    break;
+                case "6":
+                    TakePayment();
                     break;
                 default:
                     Console.WriteLine("Sorry, that was an invalid entry. Please try again.");
@@ -105,13 +113,13 @@ namespace HumaneSociety
                     Console.WriteLine("Sorry, but you must choose one of the options given");
                     AddAnotherAnimal();
                     break;
-                    
+
             }
         }
 
-        public void UpdateRoomNumber()  
+        public void UpdateRoomNumber()
         {
-            
+
             Console.WriteLine("What is the name of the animal that you would like to update room number for?");
             animal.Name = Console.ReadLine();
 
@@ -179,5 +187,18 @@ namespace HumaneSociety
             results.Food_Intake = animal.Food_Intake;
             context.SubmitChanges();
         }
+
+        public void TakePayment()
+        {
+            Console.WriteLine("How much did the customer pay?");
+            staff.Take_Payment = Console.ReadLine();
+
+            context.Staffs.InsertOnSubmit(staff);
+            context.SubmitChanges();
+        }
     }
 }
+
+
+
+ 
