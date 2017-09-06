@@ -78,9 +78,33 @@ namespace HumaneSociety
             animal.Room_Number = Convert.ToInt32(Console.ReadLine());
 
             context.Animals.InsertOnSubmit(animal);
+            AddAnotherAnimal();
+        }
 
-
-
+        public void AddAnotherAnimal()
+        {
+            Console.WriteLine("What would you like to do next?" + Environment.NewLine +
+                              "Enter '1' to Add Another Animal" + Environment.NewLine +
+                              "Enter '2' to Go Back to Main Menu" + Environment.NewLine +
+                              "Enter '3' to Exit");
+            string answer = Console.ReadLine();
+            switch (answer)
+            {
+                case "1":
+                    AddAnimal();
+                    break;
+                case "2":
+                    DisplayEmployeeMenu();
+                    break;
+                case "3":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Sorry, but you must choose one of the options given");
+                    AddAnotherAnimal();
+                    break;
+                    
+            }
         }
 
         public void UpdateRoomNumber()  
