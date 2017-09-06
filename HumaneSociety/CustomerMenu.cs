@@ -29,7 +29,8 @@ namespace HumaneSociety
         {
             Console.WriteLine("Hello " + customerName + ", how can we help you? Please choose from one of the following options:" + Environment.NewLine +
                               "Choose '1' to Create Profile." + Environment.NewLine +
-                              "Choose '2' to Search For a Pet.");
+                              "Choose '2' to Search For a Pet." + Environment.NewLine +
+                              "Choose '3' to Make Payment.");
             string customerChoice = Console.ReadLine();
             switch (customerChoice)
             {
@@ -38,6 +39,9 @@ namespace HumaneSociety
                     break;
                 case "2":
                     SearchForPet();
+                    break;
+                case "3":
+                    MakePayment();
                     break;
                 default:
                     Console.WriteLine("Sorry, that entry was not recognized. Please try again.");
@@ -269,6 +273,16 @@ namespace HumaneSociety
                 select a;
             Console.WriteLine(results);
             Console.ReadLine();
+        }
+
+        public void MakePayment()
+        {
+            Make_Payment makePayment = new Make_Payment();
+            Console.WriteLine("How much money would you like to pay");
+            makePayment.Payment = Console.ReadLine();
+
+            context.Make_Payments.InsertOnSubmit(makePayment);
+            context.SubmitChanges();
         }
     }
 }

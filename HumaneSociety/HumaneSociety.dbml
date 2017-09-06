@@ -53,6 +53,7 @@
       <Association Name="Customer_Adoption_Info2" Member="Adoption_Infos2" ThisKey="ID" OtherKey="CustomerID" Type="Adoption_Info" />
       <Association Name="Customer_Intake" Member="Intakes" ThisKey="ID" OtherKey="CustomerID" Type="Intake" />
       <Association Name="Customer_Intake1" Member="Intakes1" ThisKey="ID" OtherKey="CustomerID" Type="Intake" />
+      <Association Name="Customer_Take_Payment" Member="Take_Payments" ThisKey="ID" OtherKey="Customer_ID" Type="Take_Payment" />
       <Association Name="Person_Customer" Member="Person" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
       <Association Name="Person_Customer1" Member="Person1" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
     </Type>
@@ -117,6 +118,7 @@
       <Association Name="Staff_Medical_Procedure1" Member="Medical_Procedures1" ThisKey="ID" OtherKey="StaffID" Type="Medical_Procedure" />
       <Association Name="Staff_Medical_Staff" Member="Medical_Staffs" ThisKey="ID" OtherKey="StaffID" Type="Medical_Staff" />
       <Association Name="Staff_Medical_Staff1" Member="Medical_Staffs1" ThisKey="ID" OtherKey="StaffID" Type="Medical_Staff" />
+      <Association Name="Staff_Make_Payment" Member="Make_Payments" ThisKey="ID" OtherKey="Staff_ID" Type="Make_Payment" />
       <Association Name="Person_Staff" Member="Person" ThisKey="PersonID" OtherKey="ID" Type="Person" IsForeignKey="true" />
     </Type>
   </Table>
@@ -158,6 +160,22 @@
       <Association Name="Animal_Adoption_Status1" Member="Adoption_Status1" ThisKey="ID" OtherKey="Animal_ID" Type="Adoption_Status" />
       <Association Name="Animal_Medical_Procedure" Member="Medical_Procedures" ThisKey="ID" OtherKey="AnimalID" Type="Medical_Procedure" />
       <Association Name="Animal_Medical_Procedure1" Member="Medical_Procedures1" ThisKey="ID" OtherKey="AnimalID" Type="Medical_Procedure" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Make_Payment" Member="Make_Payments">
+    <Type Name="Make_Payment">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Payment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Staff_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Staff_Make_Payment" Member="Staff" ThisKey="Staff_ID" OtherKey="ID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Take_Payment" Member="Take_Payments">
+    <Type Name="Take_Payment">
+      <Column Name="ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Paid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Customer_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_Take_Payment" Member="Customer" ThisKey="Customer_ID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

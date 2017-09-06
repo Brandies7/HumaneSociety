@@ -66,6 +66,12 @@ namespace HumaneSociety
     partial void InsertAnimal(Animal instance);
     partial void UpdateAnimal(Animal instance);
     partial void DeleteAnimal(Animal instance);
+    partial void InsertMake_Payment(Make_Payment instance);
+    partial void UpdateMake_Payment(Make_Payment instance);
+    partial void DeleteMake_Payment(Make_Payment instance);
+    partial void InsertTake_Payment(Take_Payment instance);
+    partial void UpdateTake_Payment(Take_Payment instance);
+    partial void DeleteTake_Payment(Take_Payment instance);
     #endregion
 		
 		public HumaneSocietyDataContext() : 
@@ -191,6 +197,22 @@ namespace HumaneSociety
 			get
 			{
 				return this.GetTable<Animal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Make_Payment> Make_Payments
+		{
+			get
+			{
+				return this.GetTable<Make_Payment>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Take_Payment> Take_Payments
+		{
+			get
+			{
+				return this.GetTable<Take_Payment>();
 			}
 		}
 	}
@@ -1211,6 +1233,8 @@ namespace HumaneSociety
 		
 		private EntitySet<Intake> _Intakes1;
 		
+		private EntitySet<Take_Payment> _Take_Payments;
+		
 		private EntityRef<Person> _Person;
 		
 		private EntityRef<Person> _Person1;
@@ -1232,6 +1256,7 @@ namespace HumaneSociety
 			this._Adoption_Infos2 = new EntitySet<Adoption_Info>(new Action<Adoption_Info>(this.attach_Adoption_Infos2), new Action<Adoption_Info>(this.detach_Adoption_Infos2));
 			this._Intakes = new EntitySet<Intake>(new Action<Intake>(this.attach_Intakes), new Action<Intake>(this.detach_Intakes));
 			this._Intakes1 = new EntitySet<Intake>(new Action<Intake>(this.attach_Intakes1), new Action<Intake>(this.detach_Intakes1));
+			this._Take_Payments = new EntitySet<Take_Payment>(new Action<Take_Payment>(this.attach_Take_Payments), new Action<Take_Payment>(this.detach_Take_Payments));
 			this._Person = default(EntityRef<Person>);
 			this._Person1 = default(EntityRef<Person>);
 			OnCreated();
@@ -1343,6 +1368,19 @@ namespace HumaneSociety
 			set
 			{
 				this._Intakes1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customer_Take_Payment", Storage="_Take_Payments", ThisKey="ID", OtherKey="Customer_ID")]
+		public EntitySet<Take_Payment> Take_Payments
+		{
+			get
+			{
+				return this._Take_Payments;
+			}
+			set
+			{
+				this._Take_Payments.Assign(value);
 			}
 		}
 		
@@ -1492,6 +1530,18 @@ namespace HumaneSociety
 		{
 			this.SendPropertyChanging();
 			entity.Customer1 = null;
+		}
+		
+		private void attach_Take_Payments(Take_Payment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Customer = this;
+		}
+		
+		private void detach_Take_Payments(Take_Payment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Customer = null;
 		}
 	}
 	
@@ -2641,6 +2691,8 @@ namespace HumaneSociety
 		
 		private EntitySet<Medical_Staff> _Medical_Staffs1;
 		
+		private EntitySet<Make_Payment> _Make_Payments;
+		
 		private EntityRef<Person> _Person;
 		
     #region Extensibility Method Definitions
@@ -2663,6 +2715,7 @@ namespace HumaneSociety
 			this._Medical_Procedures1 = new EntitySet<Medical_Procedure>(new Action<Medical_Procedure>(this.attach_Medical_Procedures1), new Action<Medical_Procedure>(this.detach_Medical_Procedures1));
 			this._Medical_Staffs = new EntitySet<Medical_Staff>(new Action<Medical_Staff>(this.attach_Medical_Staffs), new Action<Medical_Staff>(this.detach_Medical_Staffs));
 			this._Medical_Staffs1 = new EntitySet<Medical_Staff>(new Action<Medical_Staff>(this.attach_Medical_Staffs1), new Action<Medical_Staff>(this.detach_Medical_Staffs1));
+			this._Make_Payments = new EntitySet<Make_Payment>(new Action<Make_Payment>(this.attach_Make_Payments), new Action<Make_Payment>(this.detach_Make_Payments));
 			this._Person = default(EntityRef<Person>);
 			OnCreated();
 		}
@@ -2815,6 +2868,19 @@ namespace HumaneSociety
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Make_Payment", Storage="_Make_Payments", ThisKey="ID", OtherKey="Staff_ID")]
+		public EntitySet<Make_Payment> Make_Payments
+		{
+			get
+			{
+				return this._Make_Payments;
+			}
+			set
+			{
+				this._Make_Payments.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_Staff", Storage="_Person", ThisKey="PersonID", OtherKey="ID", IsForeignKey=true)]
 		public Person Person
 		{
@@ -2963,6 +3029,18 @@ namespace HumaneSociety
 		{
 			this.SendPropertyChanging();
 			entity.Staff1 = null;
+		}
+		
+		private void attach_Make_Payments(Make_Payment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Make_Payments(Make_Payment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
 		}
 	}
 	
@@ -3890,6 +3968,308 @@ namespace HumaneSociety
 		{
 			this.SendPropertyChanging();
 			entity.Animal1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Make_Payment")]
+	public partial class Make_Payment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Payment;
+		
+		private System.Nullable<int> _Staff_ID;
+		
+		private EntityRef<Staff> _Staff;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnPaymentChanging(string value);
+    partial void OnPaymentChanged();
+    partial void OnStaff_IDChanging(System.Nullable<int> value);
+    partial void OnStaff_IDChanged();
+    #endregion
+		
+		public Make_Payment()
+		{
+			this._Staff = default(EntityRef<Staff>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payment", DbType="VarChar(50)")]
+		public string Payment
+		{
+			get
+			{
+				return this._Payment;
+			}
+			set
+			{
+				if ((this._Payment != value))
+				{
+					this.OnPaymentChanging(value);
+					this.SendPropertyChanging();
+					this._Payment = value;
+					this.SendPropertyChanged("Payment");
+					this.OnPaymentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Staff_ID", DbType="Int")]
+		public System.Nullable<int> Staff_ID
+		{
+			get
+			{
+				return this._Staff_ID;
+			}
+			set
+			{
+				if ((this._Staff_ID != value))
+				{
+					if (this._Staff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStaff_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Staff_ID = value;
+					this.SendPropertyChanged("Staff_ID");
+					this.OnStaff_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Make_Payment", Storage="_Staff", ThisKey="Staff_ID", OtherKey="ID", IsForeignKey=true)]
+		public Staff Staff
+		{
+			get
+			{
+				return this._Staff.Entity;
+			}
+			set
+			{
+				Staff previousValue = this._Staff.Entity;
+				if (((previousValue != value) 
+							|| (this._Staff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Staff.Entity = null;
+						previousValue.Make_Payments.Remove(this);
+					}
+					this._Staff.Entity = value;
+					if ((value != null))
+					{
+						value.Make_Payments.Add(this);
+						this._Staff_ID = value.ID;
+					}
+					else
+					{
+						this._Staff_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Take_Payment")]
+	public partial class Take_Payment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ID;
+		
+		private string _Paid;
+		
+		private System.Nullable<int> _Customer_ID;
+		
+		private EntityRef<Customer> _Customer;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(string value);
+    partial void OnIDChanged();
+    partial void OnPaidChanging(string value);
+    partial void OnPaidChanged();
+    partial void OnCustomer_IDChanging(System.Nullable<int> value);
+    partial void OnCustomer_IDChanged();
+    #endregion
+		
+		public Take_Payment()
+		{
+			this._Customer = default(EntityRef<Customer>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paid", DbType="VarChar(50)")]
+		public string Paid
+		{
+			get
+			{
+				return this._Paid;
+			}
+			set
+			{
+				if ((this._Paid != value))
+				{
+					this.OnPaidChanging(value);
+					this.SendPropertyChanging();
+					this._Paid = value;
+					this.SendPropertyChanged("Paid");
+					this.OnPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Customer_ID", DbType="Int")]
+		public System.Nullable<int> Customer_ID
+		{
+			get
+			{
+				return this._Customer_ID;
+			}
+			set
+			{
+				if ((this._Customer_ID != value))
+				{
+					if (this._Customer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCustomer_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Customer_ID = value;
+					this.SendPropertyChanged("Customer_ID");
+					this.OnCustomer_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customer_Take_Payment", Storage="_Customer", ThisKey="Customer_ID", OtherKey="ID", IsForeignKey=true)]
+		public Customer Customer
+		{
+			get
+			{
+				return this._Customer.Entity;
+			}
+			set
+			{
+				Customer previousValue = this._Customer.Entity;
+				if (((previousValue != value) 
+							|| (this._Customer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Customer.Entity = null;
+						previousValue.Take_Payments.Remove(this);
+					}
+					this._Customer.Entity = value;
+					if ((value != null))
+					{
+						value.Take_Payments.Add(this);
+						this._Customer_ID = value.ID;
+					}
+					else
+					{
+						this._Customer_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Customer");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
